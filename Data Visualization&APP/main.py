@@ -43,23 +43,38 @@ tab_selected_style = {
     'padding': '6px'
 }
 
+
+
 app.layout = html.Div([
-    dcc.Tabs(id="tabs-inline", value='tab-1', children=[
+    dcc.Tabs(id="tabs-inline", value='tab-1', parent_className='custom-tabs',className='custom-tabs-container',
+             children=[
         dcc.Tab(label='Homepage', value='Homepage', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Predict Heatwaves', value='Predict Heatwaves', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Predict Deaths', value='Predict Deaths', style=tab_style, selected_style=tab_selected_style),
         dcc.Tab(label='Tab 4', value='tab-4', style=tab_style, selected_style=tab_selected_style),
     ], style=tabs_styles),
-    html.Div(id='tabs-content-inline-3')
+    html.Div(id='tabs-content')
 ])
 
-@app.callback(Output('tabs-content-inline-3', 'children'),
+@app.callback(Output('tabs-content', 'children'),
               Input('tabs-inline', 'value'))
 def render_content(tab):
     if tab == 'Homepage':
         return html.Div([
             html.H1('MDA Project Heatwave',style={'textAlign': 'center'}),
-            html.Img(src=)
+            html.Div([
+                dcc.Graph(id='World Heatwave'),
+
+                dcc.Slider(
+                    df5['Year'].min(),
+                    df5['Year'].max(),
+                    step=None,
+                    id='year--slider1',
+                    value=df5['Year'].max(),
+                    marks={str(year): str(year) for year in df5['Year'].unique()},
+
+                )], style={'width': '48%', 'textAlign': 'center', 'float': 'center', 'display': 'inline',
+                           'margin-left': '-300px', 'margin-right': '-300px'})
         ])
     elif tab == 'Predict Heatwaves':
         return html.Div([
@@ -109,7 +124,7 @@ def render_content(tab):
         df2long['Year'].min(),
         df2long['Year'].max(),
         step=None,
-        id='year--slider',
+        id='year--slider2',
         value=df2long['Year'].max(),
         marks={str(year): str(year) for year in df2long['Year'].unique()},
 
@@ -128,11 +143,11 @@ def render_content(tab):
     Input('yaxis-column', 'value'),
     Input('xaxis-type', 'value'),
     Input('yaxis-type', 'value'),
-    Input('year--slider', 'value'))
+    Input('year--slider2', 'value'))
 def update_graph(xaxis_column_name, yaxis_column_name,
                  xaxis_type, yaxis_type,
-                 year_value):
-    df2longf = df2long[df2long['Year'] == year_value]
+                 year_value2):
+    df2longf = df2long[df2long['Year'] == year_value2]
 
     fig1 = px.scatter(x=df2longf[df2longf['Indicator Name'] == xaxis_column_name]['Value'],
                      y=df2longf[df2longf['Indicator Name'] == yaxis_column_name]['Value'],
@@ -149,11 +164,31 @@ def update_graph(xaxis_column_name, yaxis_column_name,
                      type='linear' if yaxis_type == 'Linear' else 'log')
 
     return fig1
+@app.callback(
+    Output('World Heatwave', 'figure'),
+    Input('year--slider1', 'value'))
+def update_graph(year_value1):
+    df5f = df5[df5['Year'] == year_value1]
+
+    fig2 = go.Figure(go.Scattermapbox(
+                                      mode='markers',
+                                      lon=df5f[2],
+                                      lat=df5f[3],
+                                      hovertext='Country',
+                                      hoverinfo='text',
+                                      marker_symbol='marker',
+                                      marker_size=10
+                                      ))
+
+    fig2.update_layout(margin={'l': 40, 'b': 40, 't': 10, 'r': 0}, hovermode='closest')
 
 
-
-
+    return fig2
 
 if __name__ == '__main__':
     app.run(debug=True, threaded=True)
 
+
+
+#fig2 = px.scatter_mapbox(df5, lat="Latitude (average)", lon="Longitude (average)",     color="peak_hour", size="car_hours",
+                  #color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=10)
