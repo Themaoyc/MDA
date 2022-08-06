@@ -58,7 +58,8 @@ app.layout = html.Div([
 def render_content(tab):
     if tab == 'Homepage':
         return html.Div([
-            html.H3('Tab content 1')
+            html.H1('MDA Project Heatwave',style={'textAlign': 'center'}),
+            html.Img(src=)
         ])
     elif tab == 'Predict Heatwaves':
         return html.Div([
