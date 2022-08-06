@@ -12,11 +12,17 @@ app = Dash(__name__,suppress_callback_exceptions=True,external_stylesheets=[dbc.
 df1 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/temperaturedata_predict.csv?raw=true')
 df2 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/deaths_predict.csv?raw=true')
 df2.drop(['ISO','CPI'], axis=1,inplace=True)
-df2long=df2.melt(id_vars = ['Country', 'Year'],
+df2long = df2.melt(id_vars = ['Country', 'Year'],
                     value_vars = ['tmax','duration','GDP(million dollars)','Population','healthexp','Associated Drought',
                    'Associated Wildfire','Appeal or Declaration','Total Deaths'],
                     var_name = 'Indicator Name',
                     value_name = 'Value')
+df3 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/Latitude%26Longitude.csv?raw=true')
+df4 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/emdat%20heatwave.csv?raw=true')
+df3 = df3.rename(columns={'Alpha-3 code':'ISO'})
+df4 = df4[['ISO','Year']]
+df5 = pd.merge(df4,df3,on=['ISO'],how='left')
+df5 = df5[['Country','Year','Latitude (average)','Longitude (average)']]
 
 
 
