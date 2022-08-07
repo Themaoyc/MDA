@@ -109,12 +109,13 @@ def render_content(tab):
                     'build different models to predict heatwave.'),
             html.Div(
                 [html.Img(
-                    src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true',
+                    src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture2.png?raw=true',
                     style={
                         'height': '50%',
                         'width': '50%'
                     })
                  ], style={'textAlign': 'center'}),
+            html.H3('Among all the models, Decision Tree model the one works best in terms of accuracy and AUC')
 
         ])
 
