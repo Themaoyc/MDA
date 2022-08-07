@@ -98,6 +98,23 @@ def render_content(tab):
                 )], style={'width': '48%', 'textAlign': 'center', 'float': 'center', 'display': 'inline',
                            'margin-left': '-300px', 'margin-right': '-300px'}),
             html.H3('We can see that the group with a heatwave in the future has a different trend line'),
+            html.Div(
+                [html.Img(src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true',
+                     style={
+                         'height': '50%',
+                         'width': '50%'
+                     })
+        ], style={'textAlign': 'center'}),
+            html.H3('We choose the monthly average temperature and country as independent variables and '
+                    'build different models to predict heatwave.'),
+            html.Div(
+                [html.Img(
+                    src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true',
+                    style={
+                        'height': '50%',
+                        'width': '50%'
+                    })
+                 ], style={'textAlign': 'center'}),
 
         ])
 
