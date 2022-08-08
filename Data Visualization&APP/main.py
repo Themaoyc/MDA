@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 from dash import html, dcc
 import plotly.express as px
 from dash.dependencies import Input, Output
+import statsmodels.api as sm
 app = Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=[dbc.themes.ZEPHYR])
 df1 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/temperaturedata_predict.csv?raw=true')
 df1long = df1.melt(id_vars=['Country', 'Year','Heatwave'],
@@ -18,7 +19,11 @@ df2long = df2new.melt(id_vars=['Country', 'Year'],
                                'Associated Wildfire', 'Appeal or Declaration', 'Total Deaths'],
                    var_name='Indicator Name',
                    value_name='Value')
-df3=
+df3 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/app1.csv?raw=true')
+df3x = df3.drop(columns='Total Deaths')
+df3y = df3[['Total Deaths']]
+nbmodel = sm.GLM(df3y,df3x,family=sm.families.NegativeBinomial())
+resultsnb = nbmodel.fit()
 df4 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/emdat%20heatwave.csv?raw=true')
 
 df4 = df4[['ISO','Year','Disaster Subtype']]
