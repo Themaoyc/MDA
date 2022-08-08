@@ -1,14 +1,9 @@
 from dash import Dash, html, dcc, Input, Output, dash_table, callback
-from dash.exceptions import PreventUpdate
 import pandas as pd
-import dash
 import dash_bootstrap_components as dbc
 from dash import html, dcc
-import plotly.graph_objects as go
 import plotly.express as px
 from dash.dependencies import Input, Output
-import matplotlib.pyplot as plt
-import json
 app = Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=[dbc.themes.ZEPHYR])
 df1 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/temperaturedata_predict.csv?raw=true')
 df1long = df1.melt(id_vars=['Country', 'Year','Heatwave'],
@@ -16,14 +11,14 @@ df1long = df1.melt(id_vars=['Country', 'Year','Heatwave'],
                    var_name='Month',
                    value_name='tavg')
 df2 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/deaths_predict.csv?raw=true')
-df2.drop(['ISO', 'CPI'], axis=1, inplace=True)
-df2long = df2.melt(id_vars=['Country', 'Year'],
+df2new = df2.drop(['ISO', 'CPI'], axis=1)
+df2long = df2new.melt(id_vars=['Country', 'Year'],
                    value_vars=['tmax', 'duration', 'GDP(million dollars)', 'Population', 'healthexp',
                                'Associated Drought',
                                'Associated Wildfire', 'Appeal or Declaration', 'Total Deaths'],
                    var_name='Indicator Name',
                    value_name='Value')
-
+df3=
 df4 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/emdat%20heatwave.csv?raw=true')
 
 df4 = df4[['ISO','Year','Disaster Subtype']]
@@ -72,7 +67,8 @@ def render_content(tab):
                     'our group decide to predict the heatwave and deaths caused by heatwaves.'),
 
             html.Div([
-                dcc.Graph(id='World Heatwave',figure=px.choropleth(df4, locations="ISO", color="Disaster Subtype",  animation_frame="Year",
+                dcc.Graph(id='World Heatwave',figure=px.choropleth(df4, locations="ISO",
+                                                                   color="Disaster Subtype",  animation_frame="Year",
                                                                    )),
 
                 ], style={'width': '60%', 'textAlign': 'center', 'float': 'center', 'display': 'inline',
@@ -123,6 +119,15 @@ def render_content(tab):
         return html.Div([
             html.Div([
                 html.H1('Predict deaths', style={'textAlign': 'center'}),
+                html.H3('World Heatwave Deaths Map',style={'textAlign': 'center'}),
+                html.Div([
+                    dcc.Graph(id='World Heatwave Deaths', figure=px.choropleth(df2, locations="ISO",
+                                                                        color="Total Deaths",
+                                                                        animation_frame="Year",
+                                                                        )),
+
+                ], style={'width': '60%', 'textAlign': 'center', 'float': 'center', 'display': 'inline',
+                          'margin-left': '-300px', 'margin-right': '-300px'}),
                 html.H3(
                     'In this part, we try to use GDP, health expenditure, population, max temperature during the heatwave,'
                     'duration of the heatwave,associated disaster, and the declaration in advance to predict the total deaths'
@@ -169,7 +174,8 @@ def render_content(tab):
                     marks={str(year): str(year) for year in df2long['Year'].unique()},
 
                 )], style={'width': '48%', 'textAlign': 'center', 'float': 'center', 'display': 'inline',
-                           'margin-left': '-300px', 'margin-right': '-300px'})
+                           'margin-left': '-300px', 'margin-right': '-300px'}),
+            html.H3('The negative binomial model is applied to predict the total deaths ')
 
         ])
 
