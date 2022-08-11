@@ -1,11 +1,9 @@
 from dash import Dash, html, dcc, Input, Output, dash_table, callback
 import pandas as pd
 import dash_bootstrap_components as dbc
-from dash import html, dcc
 import plotly.express as px
-from dash.dependencies import Input, Output
-import statsmodels.api as sm
-app = Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=[dbc.themes.ZEPHYR])
+import numpy as np
+app=Dash(__name__,suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.ZEPHYR])
 df1 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/temperaturedata_predict.csv?raw=true')
 df1long = df1.melt(id_vars=['Country', 'Year','Heatwave'],
                    value_vars=['January', 'February','March','April','May'],
@@ -19,15 +17,20 @@ df2long = df2new.melt(id_vars=['Country', 'Year'],
                                'Associated Wildfire', 'Appeal or Declaration', 'Total Deaths'],
                    var_name='Indicator Name',
                    value_name='Value')
-df3 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/app1.csv?raw=true')
-df3x = df3.drop(columns='Total Deaths')
-df3y = df3[['Total Deaths']]
-nbmodel = sm.GLM(df3y,df3x,family=sm.families.NegativeBinomial())
-resultsnb = nbmodel.fit()
+a3 = ['Logistic Regression','KNN','Decision Tree','Bagging','Random Forest','Gradient Boosting','Logistic Regression','KNN','Decision Tree','Bagging','Random Forest','Gradient Boosting']
+b3 = [0.5,0.5286850021486893,0.6462183068328319,0.6368715083798884,0.5548990116029222,0.5905672539750751,0.9322916666666666,0.9192708333333334,0.8723958333333334,0.7552083333333334,0.9348958333333334,0.9348958333333334]
+c3 = ['AUC','AUC','AUC','AUC','AUC','AUC','Accuracy Score','Accuracy Score','Accuracy Score','Accuracy Score','Accuracy Score','Accuracy Score']
+df3 = pd.DataFrame({'Models':a3,'value':b3,'AUC/Accuracy Score':c3})
 df4 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/emdat%20heatwave.csv?raw=true')
-
 df4 = df4[['ISO','Year','Disaster Subtype']]
+df5 = pd.DataFrame({'Months':['January','February','March','April','May','January','February','March','April','May'],
+                  'Temperature':[3.515534,4.762336,8.013707,12.058991,16.281385,1.711976,2.580137,6.013315,10.489134,14.739301],
+                 'Group':['None Heatwave','None Heatwave','None Heatwave','None Heatwave','None Heatwave','Heatwave','Heatwave','Heatwave','Heatwave','Heatwave']})
+x1 = np.arange(30, 50,0.01)
+y1 = np.exp(0.1059*x1+1.9218442)
+df6 = pd.DataFrame({'Tmax':x1,'Predict Deaths':y1})
 
+app=Dash(__name__)
 
 tabs_styles = {
     'height': '44px'
@@ -100,21 +103,17 @@ def render_content(tab):
                            'margin-left': '-300px', 'margin-right': '-300px'}),
             html.H3('We can see that the group with a heatwave in the future has a different trend line'),
             html.Div(
-                [html.Img(src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true',
-                     style={
-                         'height': '50%',
-                         'width': '50%'
-                     })
-        ], style={'textAlign': 'center'}),
+                [html.Div([
+                dcc.Graph(id='Heatwavetemperaturem',figure=px.line(df5, x='Months', y='Temperature',color='Group')),
+                    ])
+                 ], style={'textAlign': 'center'}),
             html.H3('We choose the monthly average temperature and country as independent variables and '
                     'build different models to predict heatwave.'),
+
             html.Div(
-                [html.Img(
-                    src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture2.png?raw=true',
-                    style={
-                        'height': '50%',
-                        'width': '50%'
-                    })
+                [html.Div([
+                dcc.Graph(id='Heatwave models',figure=px.bar(df3, x='Models', y='value',color='AUC/Accuracy Score')),
+                    ])
                  ], style={'textAlign': 'center'}),
             html.H3('Among all the models, Decision Tree model the one works best in terms of accuracy and AUC')
 
@@ -180,7 +179,16 @@ def render_content(tab):
 
                 )], style={'width': '48%', 'textAlign': 'center', 'float': 'center', 'display': 'inline',
                            'margin-left': '-300px', 'margin-right': '-300px'}),
-            html.H3('The negative binomial model is applied to predict the total deaths ')
+            html.H3('The negative binomial model is applied to predict the total deaths to fix the overdispersion of poisson model.'
+                    'We know this june a heatwave happened in Belgium, though the temperature data and deaths data are still not available. '
+                    'Here we use our model to predict the deaths caused by this heatwave in Belgium.'),
+            html.Div(
+                [html.Div([
+                    dcc.Graph(id='Heatwave deaths Belgium',
+                              figure=px.line(df6,x='Tmax',y='Predict Deaths')),
+                ])
+                ], style={'textAlign': 'center'}),
+
 
         ])
 
@@ -228,13 +236,16 @@ def update_graph(year_value3):
     df1longf = df1long[df1long['Year'] == year_value3]
     fig3 = px.scatter(df1longf, x="Month", y="tavg", color="Heatwave")
 
+    def update_output_div(input_value):
+        return f'Output: {input_value}'
 
     fig3.update_layout(margin={"r": 20, "t": 0, "l": 20, "b": 10})
 
 
     return fig3
 
+
 if __name__ == '__main__':
-    app.run(debug=True, threaded=True)
+    app.run(debug=True, threaded=True,dev_tools_ui=False,dev_tools_props_check=False)
 
 
