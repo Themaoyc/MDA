@@ -57,9 +57,11 @@ app.layout = html.Div([
                          selected_style=tab_selected_style),
                  dcc.Tab(label='Predict Deaths', value='Predict Deaths', style=tab_style,
                          selected_style=tab_selected_style),
-                 dcc.Tab(label='Tab 4', value='tab-4', style=tab_style, selected_style=tab_selected_style),
+                 dcc.Tab(label='Topic Modeling', value='Topic Modeling', style=tab_style,
+                         selected_style=tab_selected_style),
              ], style=tabs_styles),
-    html.Div(id='tabs-content')
+    html.Div(id='tabs-content'),
+    html.H1('MDA Project Heatwave', style={'textAlign': 'center'})
 ])
 
 
@@ -192,9 +194,9 @@ def render_content(tab):
 
         ])
 
-    elif tab == 'tab-4':
+    elif tab == 'Topic Modeling':
         return html.Div([
-            html.H3('Tab content 4')
+            html.H1('Topic Modeling', style={'textAlign': 'center'}),
         ])
 
 
