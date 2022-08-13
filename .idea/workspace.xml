@@ -105,7 +105,7 @@
       <updated>1659779713815</updated>
       <workItem from="1659779715287" duration="12321000" />
       <workItem from="1659810608413" duration="33314000" />
-      <workItem from="1660068798135" duration="14586000" />
+      <workItem from="1660068798135" duration="15859000" />
     </task>
     <servers />
   </component>
@@ -114,6 +114,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MDA$main.coverage" NAME="main Coverage Results" MODIFIED="1660398436613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data Visualization&amp;APP" />
-    <SUITE FILE_PATH="coverage/MDA$APP.coverage" NAME="APP Coverage Results" MODIFIED="1660399548472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data Visualization&amp;APP" />
+    <SUITE FILE_PATH="coverage/MDA$APP.coverage" NAME="APP Coverage Results" MODIFIED="1660405897798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data Visualization&amp;APP" />
   </component>
 </project>
