@@ -1,4 +1,4 @@
-from dash import Dash, html, dcc, Input, Output, dash_table, callback
+from dash import Dash, html, dcc, Input, Output
 import pandas as pd
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -29,7 +29,6 @@ df5 = pd.DataFrame({'Months':['January','February','March','April','May','Januar
 x1 = np.arange(30, 50,0.01)
 y1 = np.exp(0.1059*x1+1.9218442)
 df6 = pd.DataFrame({'Tmax':x1,'Predict Deaths':y1})
-
 app=Dash(__name__)
 
 tabs_styles = {
@@ -50,6 +49,14 @@ tab_selected_style = {
 }
 
 app.layout = html.Div([
+    html.H1('MDA Project Heatwave', style={'textAlign': 'center'}),
+    html.H3('Yicheng Mao R0865820', style={'textAlign': 'center'}),
+    html.Div(
+        [html.Div([
+            html.Img(
+                src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true'),
+        ])
+        ], style={'textAlign': 'center'}),
     dcc.Tabs(id="tabs-inline", value='tab-1', parent_className='custom-tabs', className='custom-tabs-container',
              children=[
                  dcc.Tab(label='Homepage', value='Homepage', style=tab_style, selected_style=tab_selected_style),
@@ -61,7 +68,7 @@ app.layout = html.Div([
                          selected_style=tab_selected_style),
              ], style=tabs_styles),
     html.Div(id='tabs-content'),
-    html.H1('MDA Project Heatwave', style={'textAlign': 'center'})
+
 ])
 
 
@@ -197,6 +204,14 @@ def render_content(tab):
     elif tab == 'Topic Modeling':
         return html.Div([
             html.H1('Topic Modeling', style={'textAlign': 'center'}),
+            html.H3('In this part, we collected 1000 core comments from Reddit with the key word Heatwave', style={'textAlign': 'center'}),
+            html.H3('WordCloud', style={'textAlign': 'center'}),
+            html.Div(
+                [html.Div([
+                    html.Img(
+                        src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true'),
+                ])
+                ], style={'textAlign': 'center'}),
         ])
 
 
