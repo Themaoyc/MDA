@@ -3,9 +3,31 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import numpy as np
-from wordcloud import WordCloud
-import matplotlib.pyplot as plt
-app=Dash(__name__,suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.ZEPHYR])
+
+# external JavaScript files
+external_scripts = [
+    'https://www.google-analytics.com/analytics.js',
+    {'src': 'https://cdn.polyfill.io/v2/polyfill.min.js'},
+    {
+        'src': 'https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.core.js',
+        'integrity': 'sha256-Qqd/EfdABZUcAxjOkMi8eGEivtdTkh3b65xCZL4qAQA=',
+        'crossorigin': 'anonymous'
+    }
+]
+
+# external CSS stylesheets
+external_stylesheets = [
+    'https://codepen.io/chriddyp/pen/bWLwgP.css',
+    {
+        'href': 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
+        'rel': 'stylesheet',
+        'integrity': 'sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO',
+        'crossorigin': 'anonymous'
+    }
+]
+
+app=Dash(__name__,suppress_callback_exceptions=True,external_scripts=external_scripts,
+                external_stylesheets=external_stylesheets)
 df1 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/temperaturedata_predict.csv?raw=true')
 df1long = df1.melt(id_vars=['Country', 'Year','Heatwave'],
                    value_vars=['January', 'February','March','April','May'],
@@ -31,7 +53,7 @@ df5 = pd.DataFrame({'Months':['January','February','March','April','May','Januar
 x1 = np.arange(30, 50,0.01)
 y1 = np.exp(0.1059*x1+1.9218442)
 df6 = pd.DataFrame({'Tmax':x1,'Predict Deaths':y1})
-df7 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/nlp.csv?raw=true')
+df7 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/topic.csv?raw=true')
 
 app=Dash(__name__)
 
@@ -219,6 +241,15 @@ def render_content(tab):
                 ], style={'textAlign': 'center'}),
             html.H3('LDA model is applied to determine cluster words.',
                     style={'textAlign': 'center'}),
+            html.Div([
+                dcc.Dropdown(
+                    df7['topic'].unique(),
+                    'Topic1',
+                    id='Topic'
+                ),
+            ], style={'width': '48%', 'display': 'inline-block'}),
+            dcc.Graph(id='topic model'),
+            html.H3('Top 10 Words for each Topic', style={'textAlign': 'center'}),
         ])
 
 
@@ -268,6 +299,18 @@ def update_graph(year_value3):
 
     return fig3
 
+@app.callback(
+    Output('topic model', 'figure'),
+    Input('Topic', 'value'))
+def update_graph(topic):
+    df7f = df7[df7['topic'] == topic]
+    fig_topic = px.bar(df7f,
+                       x='Word',
+                       y='Weight',
+                       color='Word',
+                    )
+    fig_topic.update_layout(showlegend=False)
+    return fig_topic
 
 if __name__ == '__main__':
     app.run(debug=True, threaded=True,dev_tools_ui=False,dev_tools_props_check=False)
