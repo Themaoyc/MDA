@@ -3,6 +3,8 @@ import pandas as pd
 import dash_bootstrap_components as dbc
 import plotly.express as px
 import numpy as np
+from wordcloud import WordCloud
+import matplotlib.pyplot as plt
 app=Dash(__name__,suppress_callback_exceptions=True,external_stylesheets=[dbc.themes.ZEPHYR])
 df1 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/temperaturedata_predict.csv?raw=true')
 df1long = df1.melt(id_vars=['Country', 'Year','Heatwave'],
@@ -29,6 +31,8 @@ df5 = pd.DataFrame({'Months':['January','February','March','April','May','Januar
 x1 = np.arange(30, 50,0.01)
 y1 = np.exp(0.1059*x1+1.9218442)
 df6 = pd.DataFrame({'Tmax':x1,'Predict Deaths':y1})
+df7 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/nlp.csv?raw=true')
+
 app=Dash(__name__)
 
 tabs_styles = {
@@ -204,14 +208,17 @@ def render_content(tab):
     elif tab == 'Topic Modeling':
         return html.Div([
             html.H1('Topic Modeling', style={'textAlign': 'center'}),
-            html.H3('In this part, we collected 1000 core comments from Reddit with the key word Heatwave', style={'textAlign': 'center'}),
+            html.H3('In this part, we collected 1000 core comments from Reddit with the key word Heatwave.', style={'textAlign': 'center'}),
             html.H3('WordCloud', style={'textAlign': 'center'}),
+
             html.Div(
                 [html.Div([
                     html.Img(
-                        src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/picture1.png?raw=true'),
+                        src='https://github.com/Themaoyc/MDA/blob/main/Data%20Visualization%26APP/assets/wordcloud.png?raw=true'),
                 ])
                 ], style={'textAlign': 'center'}),
+            html.H3('LDA model is applied to determine cluster words.',
+                    style={'textAlign': 'center'}),
         ])
 
 
