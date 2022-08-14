@@ -7,7 +7,7 @@
 
 [Data Analysis](https://github.com/Themaoyc/MDA/tree/main/Data%20Analysis): 3 jupyter notebooks for 3 research questions(Predict Heatwave, Predict Deaths caused by Heatwave and Topic modeling for people's comments on heatwave)
 
-[Data Visualization&APP](https://github.com/Themaoyc/MDA/tree/main/Data%20Visualization%26APP): Web APP by dash ploty
+[Data Visualization&APP](https://github.com/Themaoyc/MDA/tree/main/Data%20Visualization%26APP): jupyter notebook and asset for web APP by dash ploty
 
 [requirements.txt](https://github.com/Themaoyc/MDA/blob/main/requirements.txt): All the packages needed for this project
 ## About The APP
