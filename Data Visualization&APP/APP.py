@@ -42,8 +42,8 @@ df2long = df2new.melt(id_vars=['Country', 'Year'],
                    value_name='Value')
 a3 = ['Logistic Regression','KNN','Decision Tree','Bagging','Random Forest','Gradient Boosting','Logistic Regression','KNN','Decision Tree','Bagging','Random Forest','Gradient Boosting']
 b3 = [0.5,0.5286850021486893,0.6462183068328319,0.6368715083798884,0.5548990116029222,0.5905672539750751,0.9322916666666666,0.9192708333333334,0.8723958333333334,0.7552083333333334,0.9348958333333334,0.9348958333333334]
-c3 = ['AUC','AUC','AUC','AUC','AUC','AUC','Accuracy Score','Accuracy Score','Accuracy Score','Accuracy Score','Accuracy Score','Accuracy Score']
-df3 = pd.DataFrame({'Models':a3,'value':b3,'AUC/Accuracy Score':c3})
+c3 = ['AUC','AUC','AUC','AUC','AUC','AUC','Accuracy','Accuracy','Accuracy','Accuracy','Accuracy','Accuracy']
+df3 = pd.DataFrame({'Models':a3,'value':b3,'AUC/Accuracy':c3})
 df4 = pd.read_csv('https://github.com/Themaoyc/MDA/blob/main/Data/emdat%20heatwave.csv?raw=true')
 df4 = df4[['ISO','Year','Disaster Subtype']]
 df5 = pd.DataFrame({'Months':['January','February','March','April','May','January','February','March','April','May'],
@@ -146,10 +146,10 @@ def render_content(tab):
 
             html.Div(
                 [html.Div([
-                dcc.Graph(id='Heatwave models',figure=px.bar(df3, x='Models', y='value',color='AUC/Accuracy Score')),
+                dcc.Graph(id='Heatwave models',figure=px.bar(df3, x='Models', y='value',color='AUC/Accuracy')),
                     ])
                  ], style={'textAlign': 'center'}),
-            html.H3('Among all the models, Decision Tree model the one works best in terms of accuracy and AUC')
+            html.H3('Among all the models, Decision Tree model the one works best in terms of Accuracy and AUC')
 
         ])
 
