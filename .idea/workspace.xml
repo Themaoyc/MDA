@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d8dc8b3a-2c18-4305-b972-4d6d0c0928e1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data Analysis/.ipynb_checkpoints/Predeict heatwaves-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Analysis/.ipynb_checkpoints/Predeict heatwaves-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data Analysis/Predeict heatwaves.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Analysis/Predeict heatwaves.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data Analysis/Predict Deaths.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Analysis/Predict Deaths.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data Collecting&amp;Preprocessing/Data Collecting&amp;Preprocessing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Collecting&amp;Preprocessing/Data Collecting&amp;Preprocessing.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data Visualization&amp;APP/APP.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data Visualization&amp;APP/APP.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +109,7 @@
       <workItem from="1659810608413" duration="33314000" />
       <workItem from="1660068798135" duration="16968000" />
       <workItem from="1660463746595" duration="1100000" />
-      <workItem from="1660464913547" duration="384000" />
+      <workItem from="1660464913547" duration="389000" />
     </task>
     <servers />
   </component>
