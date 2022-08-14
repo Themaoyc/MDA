@@ -1,6 +1,5 @@
 from dash import Dash, html, dcc, Input, Output
 import pandas as pd
-import dash_bootstrap_components as dbc
 import plotly.express as px
 import numpy as np
 

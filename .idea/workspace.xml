@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d8dc8b3a-2c18-4305-b972-4d6d0c0928e1" name="Changes" comment="" />
+    <list default="true" id="d8dc8b3a-2c18-4305-b972-4d6d0c0928e1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/.ipynb_checkpoints/Predeict heatwaves-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Analysis/.ipynb_checkpoints/Predeict heatwaves-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/Predeict heatwaves.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Analysis/Predeict heatwaves.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Analysis/Predict Deaths.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Analysis/Predict Deaths.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Collecting&amp;Preprocessing/Data Collecting&amp;Preprocessing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Data Collecting&amp;Preprocessing/Data Collecting&amp;Preprocessing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Visualization&amp;APP/APP.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data Visualization&amp;APP/APP.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,15 +37,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/apple/Desktop/MDA",
-    "settings.editor.selected.configurable": "vcs.Git"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/apple/Desktop/MDA&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/Data Visualization&amp;APP" />
@@ -105,7 +113,9 @@
       <updated>1659779713815</updated>
       <workItem from="1659779715287" duration="12321000" />
       <workItem from="1659810608413" duration="33314000" />
-      <workItem from="1660068798135" duration="15859000" />
+      <workItem from="1660068798135" duration="16968000" />
+      <workItem from="1660463746595" duration="1100000" />
+      <workItem from="1660464913547" duration="384000" />
     </task>
     <servers />
   </component>
@@ -114,6 +124,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/MDA$main.coverage" NAME="main Coverage Results" MODIFIED="1660398436613" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data Visualization&amp;APP" />
-    <SUITE FILE_PATH="coverage/MDA$APP.coverage" NAME="APP Coverage Results" MODIFIED="1660405897798" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data Visualization&amp;APP" />
+    <SUITE FILE_PATH="coverage/MDA$APP.coverage" NAME="APP Coverage Results" MODIFIED="1660464539703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Data Visualization&amp;APP" />
   </component>
 </project>
