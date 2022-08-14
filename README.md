@@ -10,3 +10,5 @@
 [Data Visualization&APP](https://github.com/Themaoyc/MDA/tree/main/Data%20Visualization%26APP): Web APP by dash ploty
 
 [requirements.txt](https://github.com/Themaoyc/MDA/blob/main/requirements.txt): All the packages needed for this project
+## About The APP
+The notebook for APP is also upload to the Google Colab, whose link is [https://colab.research.google.com/drive/1mtrt_Pkt2ifNypbIRVGkLLBQmPmma87L?usp=sharing](https://colab.research.google.com/drive/1mtrt_Pkt2ifNypbIRVGkLLBQmPmma87L?usp=sharing)
